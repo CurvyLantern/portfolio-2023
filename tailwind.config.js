@@ -16,6 +16,10 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        primary: "var(--primary-font)",
+        secondary: "var(--secondary-font)",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

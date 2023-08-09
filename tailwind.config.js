@@ -17,6 +17,7 @@ const config = {
     },
     extend: {
       fontFamily: {
+        cursive: "var(--font-cursive)",
         primary: "var(--primary-font)",
         secondary: "var(--secondary-font)",
       },
@@ -68,6 +69,10 @@ const config = {
         "accordion-up": {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: 0 },
+        },
+        "move-left": {
+          from: { transform: translateX(0) },
+          to: { transform: translateX("100%") },
         },
       },
       animation: {

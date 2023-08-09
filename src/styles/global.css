@@ -35,8 +35,9 @@
  
     --radius: 0.5rem;
 
-    --primary-font: 'Poppins';
-    --secondary-font: 'Roboto';
+    --font-cursive: 'Borel';
+    --primary-font: 'Roboto Mono';
+    --secondary-font: 'Rubik';
   }
  
   .dark {

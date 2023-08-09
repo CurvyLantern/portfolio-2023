@@ -6,7 +6,7 @@ import Project2 from "@/assets/project2.png";
 import Project3 from "@/assets/project3.png";
 import Project4 from "@/assets/project4.png";
 import { Link } from "react-router-dom";
-console.log({ styles });
+import Marquee from "@/components/sections/Marquee";
 const ProfilePage = () => {
   const skills = [
     {
@@ -178,7 +178,7 @@ const ProfilePage = () => {
             <Button
               variant="wide"
               size="xl">
-              See more projects
+              <Link to="/projects">See more projects</Link>
             </Button>
           </div>
         </div>
@@ -221,46 +221,16 @@ const ProfilePage = () => {
           </div>
           <div className="container flex items-center justify-center">
             <Button
+              aschild
               variant="wideInvert"
               size="xl">
-              More about me
+              <Link to="/about-me">More about me</Link>
             </Button>
           </div>
         </div>
       </section>
 
-      {/* hire me slide */}
-      <section className="my-40">
-        {[0, 0, 0].map((_, rowIdx) => {
-          return (
-            <div className={`${styles.marquee} bg-foreground py-5`}>
-              {[0, 0].map((_, idx) => (
-                <div
-                  className={`bg-foreground text-background text-9xl uppercase font-primary ${
-                    styles.marquee__content
-                  } ${
-                    rowIdx % 2 === 0
-                      ? styles.marquee__reverse
-                      : styles.marquee__normal
-                  }`}
-                  aria-hidden={idx === 1}>
-                  {Array(50)
-                    .fill(0)
-                    .map((_, idx) => {
-                      return (
-                        <p
-                          key={idx}
-                          className="flex-shrink-0 ">
-                          Hire me
-                        </p>
-                      );
-                    })}
-                </div>
-              ))}
-            </div>
-          );
-        })}
-      </section>
+      <Marquee text="Hire me" />
     </div>
   );
 };

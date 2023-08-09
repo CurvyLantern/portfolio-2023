@@ -16,6 +16,12 @@ const config = {
       },
     },
     extend: {
+      flex: Array(10)
+        .fill(0)
+        .reduce((acc, _, idx) => {
+          acc[idx + 1] = idx + 1;
+          return acc;
+        }, {}),
       fontFamily: {
         cursive: "var(--font-cursive)",
         primary: "var(--primary-font)",

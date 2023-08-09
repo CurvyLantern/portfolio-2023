@@ -4,6 +4,7 @@ import HangingPng from "@/assets/hanging.png";
 import CreativePng from "@/assets/creativity.png";
 import BeCreativePng from "@/assets/be-creative.png";
 import LearingPng from "@/assets/learning.png";
+import Marquee from "@/components/sections/Marquee";
 const AboutPage = () => {
   return (
     <div className="font-secondary">
@@ -147,38 +148,7 @@ const AboutPage = () => {
         </div>
       </div>
 
-      {/* hire me slide */}
-      <section className="my-40">
-        {[0, 0, 0].map((_, rowIdx) => {
-          return (
-            <div className={`${styles.marquee} bg-foreground py-5`}>
-              {[0, 0].map((_, idx) => (
-                <div
-                  className={`bg-foreground text-background text-9xl uppercase font-primary ${
-                    styles.marquee__content
-                  } ${
-                    rowIdx % 2 === 0
-                      ? styles.marquee__reverse
-                      : styles.marquee__normal
-                  }`}
-                  aria-hidden={idx === 1}>
-                  {Array(50)
-                    .fill(0)
-                    .map((_, idx) => {
-                      return (
-                        <p
-                          key={idx}
-                          className="flex-shrink-0 tracking-tighter">
-                          Let's talk
-                        </p>
-                      );
-                    })}
-                </div>
-              ))}
-            </div>
-          );
-        })}
-      </section>
+      <Marquee text="Let's talk" />
     </div>
   );
 };

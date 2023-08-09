@@ -5,6 +5,7 @@ import {
   TbBrandGithub,
   TbBrandLinkedin,
 } from "react-icons/tb";
+import HireMe from "@/components/special/HireMe";
 const RootLayoutV2 = () => {
   const menu_links = [
     {
@@ -23,16 +24,19 @@ const RootLayoutV2 = () => {
   const social_links = [
     {
       name: "fb",
+      fullName: "Facebook",
       icon: TbBrandFacebook,
       href: "",
     },
     {
       name: "ln",
+      fullName: "Linkedin",
       icon: TbBrandLinkedin,
       href: "",
     },
     {
       name: "git",
+      fullName: "Github",
       icon: TbBrandGithub,
       href: "",
     },
@@ -66,11 +70,7 @@ const RootLayoutV2 = () => {
               </ul>
 
               {/* cta */}
-              <Button
-                variant="highlight"
-                size="lg">
-                Hire Me
-              </Button>
+              <HireMe socialLinks={social_links} />
             </div>
           </div>
         </div>

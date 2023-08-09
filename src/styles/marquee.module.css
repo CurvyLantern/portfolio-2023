@@ -1,0 +1,49 @@
+/* Marquee styles */
+.marquee {
+    --gap: 5rem;
+    --time: 200s;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: var(--gap);
+    pointer-events: none;
+  }
+  
+  .marquee__content {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-around;
+    gap: var(--gap);
+    min-width: 100%;
+    user-select: none;
+
+  }
+  
+  .marquee__normal {
+    /* transform: translateX(calc(-100% - var(--gap))); */
+    animation: scroll var(--time) linear infinite ;
+  }
+
+  .marquee__reverse {
+    animation: scroll-reverse var(--time) linear infinite ;
+  }
+  
+
+  @keyframes scroll {
+    from {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scroll-reverse {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }

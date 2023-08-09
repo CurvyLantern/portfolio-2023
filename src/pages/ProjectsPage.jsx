@@ -2,6 +2,8 @@ import Project1 from "@/assets/project1.png";
 import Project2 from "@/assets/project2.png";
 import Project3 from "@/assets/project3.png";
 import Project4 from "@/assets/project4.png";
+import Project5 from "@/assets/project5.png";
+import Project6 from "@/assets/project6.png";
 const ProjectsPage = () => {
   const projects = {
     first: {
@@ -27,6 +29,18 @@ const ProjectsPage = () => {
       desc: "Furniture for you and your next genreation",
       img: Project4,
       href: "https://kano-furniture.vercel.app/",
+    },
+    five: {
+      name: "Old-portfolio",
+      desc: "One of my old portfolios ( I have a few 😐 )",
+      img: Project5,
+      href: "https://portfolio-flame-eight-18.vercel.app/",
+    },
+    six: {
+      name: "Little Games",
+      desc: "Some simple games I tried to make to spend my idle time, left incomplete",
+      img: Project6,
+      href: "https://games-tan-five.vercel.app/",
     },
   };
   const projectArr = Object.values(projects);

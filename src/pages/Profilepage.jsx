@@ -70,8 +70,8 @@ const ProfilePage = () => {
             Over 2 years of hard learned experience in javascript
           </p>
 
-          <h1 className="text-8xl uppercase font-semibold">
-            I'm a developer who knows Javascript{" "}
+          <h1 className="text-right text-8xl uppercase font-semibold">
+            I'm a developer who knows how to write Javascript{" "}
           </h1>
         </div>
       </section>

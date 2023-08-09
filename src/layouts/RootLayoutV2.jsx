@@ -115,7 +115,7 @@ const RootLayoutV2 = () => {
 
         {/* copyright */}
         <div className="container text-sm text-opacity-25 text-background text-center py-5">
-          copyright by naseem
+          copyright &copy; by naseem
         </div>
       </footer>
     </div>

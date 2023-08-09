@@ -19,7 +19,7 @@ const buttonVariants = cva(
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        wide: "border-2 border-primary text-lg font-semibold bg-background hover:bg-accent hover:text-accent-foreground",
+        wide: "border-2 border-primary text-lg font-semibold bg-background text-foreground hover:bg-accent hover:text-accent-foreground",
         wideInvert:
           "border-2 border-primary-foreground text-lg font-semibold text-background bg-foreground hover:bg-background hover:text-foreground",
       },

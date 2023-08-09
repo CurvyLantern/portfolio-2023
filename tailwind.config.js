@@ -25,8 +25,8 @@ const config = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        background: "hsl(var(--background) / <alpha-value>)",
+        foreground: "hsl(var(--foreground) / <alpha-value>)",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
@@ -71,13 +71,14 @@ const config = {
           to: { height: 0 },
         },
         "move-left": {
-          from: { transform: translateX(0) },
-          to: { transform: translateX("100%") },
+          from: { transform: " translateX(0)" },
+          to: { transform: "translateX(-100%)" },
         },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "move-left": "move-left 10s linear 10s infinite",
       },
     },
   },

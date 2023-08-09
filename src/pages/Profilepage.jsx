@@ -1,5 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import styles from "@/styles/marquee.module.css";
+import Project1 from "@/assets/project1.png";
+import Project2 from "@/assets/project2.png";
+import Project3 from "@/assets/project3.png";
+import Project4 from "@/assets/project4.png";
+import { Link } from "react-router-dom";
+console.log({ styles });
 const ProfilePage = () => {
   const skills = [
     {
@@ -26,53 +33,36 @@ const ProfilePage = () => {
       ],
     },
   ];
+
+  const projects = {
+    first: {
+      name: "Rongberong",
+      desc: "Color palette finder and generator",
+      img: Project1,
+      href: "https://rongberong.vercel.app/",
+    },
+    second: {
+      name: "Muvitime",
+      desc: "Screen sharing and video calling",
+      img: Project2,
+      href: "https://muvitime.vercel.app/",
+    },
+    third: {
+      name: "Satlight",
+      desc: "Track every sattelights out there",
+      img: Project3,
+      href: "https://satlight.vercel.app/",
+    },
+    four: {
+      name: "Kano",
+      desc: "Furniture for you and your next genreation",
+      img: Project4,
+      href: "https://kano-furniture.vercel.app/",
+    },
+  };
+
   return (
     <div className="font-secondary">
-      <header className="py-5 mb-20">
-        <div className="container flex items-center justify-between">
-          {/* logo */}
-          <p className="font-cursive text-3xl font-bold">naseem</p>
-          <div className="flex items-center">
-            {/* available */}
-            <p className="w-36 mr-10">Open for any jobs and collaborations</p>
-
-            <div className="flex items-center gap-5 border-4 border-primary p-1 rounded-full">
-              {/* menu */}
-              <ul className="flex">
-                <li className="flex-1">
-                  <a
-                    href="#"
-                    className="px-8 py-2">
-                    Projects
-                  </a>
-                </li>
-                <li className="flex-1">
-                  <a
-                    href="#"
-                    className="px-8 py-2">
-                    About
-                  </a>
-                </li>
-                <li className="flex-1">
-                  <a
-                    href="#"
-                    className="px-8 py-2">
-                    Contact
-                  </a>
-                </li>
-              </ul>
-
-              {/* cta */}
-              <Button
-                variant="highlight"
-                size="lg">
-                Hire Me
-              </Button>
-            </div>
-          </div>
-        </div>
-      </header>
-
       {/* hero */}
       <section className="mb-20">
         <div className="container">
@@ -97,24 +87,46 @@ const ProfilePage = () => {
             <div className="flex border-b-2 border-primary">
               {/* first */}
               <div className=" flex-1 p-3 pl-0">
-                <div className="aspect-video rounded-lg bg-red-600 relative">
-                  <div className="absolute w-full h-full top-0 left-0 p-5 flex flex-col justify-end">
-                    <p className="text-primary-foreground uppercase text-2xl font-primary">
-                      Name of project 1
-                    </p>
+                <Link to={projects.first.href}>
+                  <div className="aspect-video rounded-lg overflow-hidden relative flex">
+                    <div className="w-full h-full  relative flex items-center justify-center">
+                      <img
+                        className="w-full h-full object-cover"
+                        src={projects.first.img}
+                        alt=""
+                      />
+                    </div>
+                    <div className="absolute w-full h-full top-0 left-0  flex flex-col justify-end">
+                      <p className="text-primary-foreground bg-foreground bg-opacity-50 p-5 uppercase text-2xl font-primary backdrop-blur-md">
+                        <span className="font-bold">{projects.first.name}</span>{" "}
+                        - {projects.first.desc}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
               <div className="border-l-2 border-primary"></div>
               {/* second */}
               <div className=" flex-1 p-3 pr-0">
-                <div className="aspect-video rounded-lg bg-red-600 relative">
-                  <div className="absolute w-full h-full top-0 left-0 p-5 flex flex-col justify-end">
-                    <p className="text-primary-foreground uppercase text-2xl font-primary">
-                      Name of project 2
-                    </p>
+                <Link to={projects.second.href}>
+                  <div className="aspect-video rounded-lg overflow-hidden  relative">
+                    <div className="w-full h-full  relative flex items-center justify-center">
+                      <img
+                        className="w-full h-full  object-cover"
+                        src={projects.second.img}
+                        alt=""
+                      />
+                    </div>
+                    <div className="absolute w-full h-full top-0 left-0  flex flex-col justify-end">
+                      <p className="text-primary-foreground bg-foreground bg-opacity-50 p-5 uppercase text-2xl font-primary backdrop-blur-md">
+                        <span className="font-bold">
+                          {projects.second.name}
+                        </span>{" "}
+                        - {projects.second.desc}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
             </div>
 
@@ -122,24 +134,43 @@ const ProfilePage = () => {
             <div className="flex">
               {/* third */}
               <div className="flex-1 p-3 pl-0">
-                <div className="aspect-video rounded-lg bg-red-600 relative">
-                  <div className="absolute w-full h-full top-0 left-0 p-5 flex flex-col justify-end">
-                    <p className="text-primary-foreground uppercase text-2xl font-primary">
-                      Name of project 3
-                    </p>
+                <Link to={projects.third.href}>
+                  <div className="aspect-video rounded-lg overflow-hidden  relative">
+                    <div className="w-full h-full  relative flex items-center justify-center">
+                      <img
+                        className="w-full  h-full object-cover"
+                        src={projects.third.img}
+                        alt=""
+                      />
+                    </div>
+                    <div className="absolute w-full h-full top-0 left-0  flex flex-col justify-end">
+                      <p className="text-primary-foreground bg-foreground bg-opacity-50 p-5 uppercase text-2xl font-primary backdrop-blur-md">
+                        <span className="font-bold">{projects.third.name}</span>{" "}
+                        - {projects.third.desc}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
               <div className="border-l-2 border-primary"></div>
               {/* last */}
               <div className="flex-1 p-3 pr-0">
-                <div className="aspect-video rounded-lg bg-red-600 relative">
-                  <div className="absolute w-full h-full top-0 left-0 p-5 flex flex-col justify-end">
-                    <p className="text-primary-foreground uppercase text-2xl font-primary">
-                      Name of project 4
-                    </p>
+                <Link to={projects.four.href}>
+                  <div className="aspect-video rounded-lg overflow-hidden bg-red-600 relative">
+                    <div className="w-full h-full  relative flex items-center justify-center">
+                      <img
+                        className="w-full  h-full object-cover"
+                        src={projects.four.img}
+                        alt=""
+                      />
+                    </div>
+                    <div className="absolute w-full h-full top-0 left-0  flex flex-col justify-end">
+                      <p className="text-primary-foreground bg-foreground bg-opacity-50 p-5 uppercase text-2xl font-primary backdrop-blur-md">
+                        <span>{projects.four.name}</span> - {projects.four.desc}
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -164,13 +195,13 @@ const ProfilePage = () => {
               return (
                 <div
                   key={skillIdx}
-                  className="bg-primary-foreground border-2 border-primary shadow-md rounded-lg px-20 py-5 flex">
+                  className="bg-primary-foreground border-2 border-primary shadow-md rounded-lg px-20 py-5 flex items-center">
                   <h4 className="uppercase font-semibold text-2xl">
                     {skill.name}
                   </h4>
                   {/* skills */}
-                  <div className="ml-auto">
-                    <div className=" w-80 gap-2 flex flex-wrap">
+                  <div className="ml-auto flex items-center justify-center">
+                    <div className=" w-80 gap-2 flex flex-wrap ">
                       {skill.skillNames.map((skillName, skillNameIdx) => {
                         return (
                           <Badge
@@ -199,40 +230,37 @@ const ProfilePage = () => {
       </section>
 
       {/* hire me slide */}
-      <div className="overflow-hidden">
-        <div className=" flex gap-10 bg-foreground text-background text-9xl uppercase font-primary">
-          {Array(50)
-            .fill(0)
-            .map((_, idx) => {
-              return (
-                <p
-                  key={idx}
-                  className="flex-shrink-0 ">
-                  Hire me
-                </p>
-              );
-            })}
-        </div>
-      </div>
-
-      {/* footer */}
-      <footer>
-        <div className="container">
-          <p>Open for any offers and jobs</p>
-
-          {/* social icons */}
-          <ul>
-            <li>fb</li>
-            <li>ln</li>
-            <li>git</li>
-          </ul>
-
-          <button>send me email</button>
-        </div>
-
-        {/* copyright */}
-        <div className="container">copyright by naseem</div>
-      </footer>
+      <section className="my-40">
+        {[0, 0, 0].map((_, rowIdx) => {
+          return (
+            <div className={`${styles.marquee} bg-foreground py-5`}>
+              {[0, 0].map((_, idx) => (
+                <div
+                  className={`bg-foreground text-background text-9xl uppercase font-primary ${
+                    styles.marquee__content
+                  } ${
+                    rowIdx % 2 === 0
+                      ? styles.marquee__reverse
+                      : styles.marquee__normal
+                  }`}
+                  aria-hidden={idx === 1}>
+                  {Array(50)
+                    .fill(0)
+                    .map((_, idx) => {
+                      return (
+                        <p
+                          key={idx}
+                          className="flex-shrink-0 ">
+                          Hire me
+                        </p>
+                      );
+                    })}
+                </div>
+              ))}
+            </div>
+          );
+        })}
+      </section>
     </div>
   );
 };

@@ -1,4 +1,3 @@
-import CarSvg from "@/assets/car.svg";
 import Project1 from "@/assets/project1.png";
 import Project2 from "@/assets/project2.png";
 import Project3 from "@/assets/project3.png";
@@ -8,16 +7,19 @@ import { Heading1, Heading2 } from "@/components/special/Typography";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import styles from "@/styles/marquee.module.css";
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { useIntersection, useWindowScroll } from "react-use";
+import { useWindowScroll } from "react-use";
 
 const skewCorrection = (deg, height) =>
   Math.tan((deg * Math.PI) / 180) * height;
 
 const skewDifferece = (deg, width) => Math.tan((deg * Math.PI) / 180) * width;
-
+const mapper = (val, x, y) => {
+  const min = Math.min(x, y);
+  const max = Math.max(x, y);
+  return (val - min) / (max - min);
+};
 const ProfilePage = () => {
   const skills = [
     {
@@ -79,87 +81,29 @@ const ProfilePage = () => {
     },
   };
 
-  const scrollEl = useRef(null);
-  const carRef = useRef(null);
-  const groundRef = useRef(null);
-  const { x: scrollX, y: scrollY } = useWindowScroll();
-  const [hasReachedGround, setHasReachedGround] = useState(false);
-  const carIntersection = useIntersection(carRef, {
-    root: null,
-    rootMargin: "0px",
-    threshold: 1,
-  });
-  const groundIntersection = useIntersection(groundRef, {
-    root: null,
-    rootMargin: "0px",
-    threshold: 1,
-  });
-  useEffect(() => {
-    // console.clear();
-    // console.log(carIntersection, groundIntersection, hasReachedGround);
-    const pO = window.scrollY;
-    const carBounds = carRef.current.getBoundingClientRect();
-    const groundBounds = groundRef.current.getBoundingClientRect();
-    // console.log(pO, carBounds.bottom, groundBounds.top);
-    const carBottom = carBounds.bottom;
-    const groundsTop = groundBounds.top;
-    // console.log({ carBottom, groundsTop });
-    // console.log(groundBounds);
-    const actualGroundTop =
-      groundBounds.top + skewCorrection(-6, groundBounds.height);
-    // console.log({
-    //   groundTop: groundBounds.top,
-    //   actualGroundTop,
-    //   carBottom,
-    //   displacement,
-    // });
-    let downY = scrollY;
-    const topRightPoint = groundBounds.top;
-    const displacement = skewDifferece(6, groundBounds.width);
-    const topLeftPoint = displacement + topRightPoint;
-    console.log({ topRightPoint, topLeftPoint });
-    if (carBottom >= groundsTop) {
-      setHasReachedGround(true);
-      carRef.current.style.transform = `translateY(${scrollY}px)`;
-    } else {
-      setHasReachedGround(false);
-      carRef.current.style.transform = `translateY(${scrollY}px)`;
-    }
-  }, [scrollY]);
+  // const scrollEl = useRef(null);
+  // const carRef = useRef(null);
+  // const groundRef = useRef(null);
+  // const { x: scrollX, y: scrollY } = useWindowScroll();
+  // const [top, setTop] = useState(0);
+  // const [bottom, setBottom] = useState(0);
+  // useEffect(() => {
+  //   const dx = mapper(scrollY, 0, bottom);
+  //   const prcnt = Math.min(dx * 100, 110);
+  //   carRef.current.style.setProperty("--off-dist", `${prcnt}%`);
+  // });
 
-  useEffect(() => {
-    console.log({ hasReachedGround });
-  }, [hasReachedGround]);
+  // useEffect(() => {
+  //   const bounds = groundRef.current.getBoundingClientRect();
+  //   const diff = skewDifferece(6, bounds.width);
+  //   const minBottom = bounds.top + diff - 200;
+  //   setBottom(minBottom);
+  // }, []);
 
   return (
-    <div
-      ref={scrollEl}
-      className="font-secondary relative">
-      <div>
-        {scrollX} {scrollY}
-      </div>
+    <div className="font-secondary relative">
       {/* hero */}
-      <div
-        ref={carRef}
-        style={{
-          transform: ``,
 
-          // translateX: hasReachedGround ? 0 : scrollY,
-          right: 0,
-          marginRight: "-17px",
-          transformOrigin: "top right",
-        }}
-        className={cn("absolute w-24 z-50", styles.car__motion)}>
-        <img
-          style={{
-            transform: `rotateY(180deg)`,
-            rotate: "270deg",
-          }}
-          className="w-full relative block"
-          src={CarSvg}
-          alt=""
-        />
-      </div>
       <section className="mb-40">
         <div className="container">
           <p className="float-left w-44 uppercase font-semibold font-primary text-sm pr-5 pb-5">
@@ -220,9 +164,7 @@ const ProfilePage = () => {
 
       {/* what I do */}
       <section className="pt-40">
-        <div
-          ref={groundRef}
-          className="bg-foreground text-background pt-20 pb-40 origin-top-right -skew-y-6 ">
+        <div className="bg-foreground text-background pt-20 pb-40 origin-top-right -skew-y-[4deg] ">
           <div className="container pb-11">
             <Heading2>My skills</Heading2>
           </div>
@@ -237,12 +179,15 @@ const ProfilePage = () => {
                     transformOrigin: "center",
                   }}
                   key={skillIdx}
-                  className="bg-primary-foreground border-2 border-primary shadow-md rounded-lg md:px-20 py-5 flex flex-col gap-10 md:flex-row items-center">
+                  className={cn(
+                    "bg-primary-foreground border-2 border-primary shadow-md rounded-lg md:px-20 py-5 flex flex-col gap-10 md:flex-row items-center"
+                  )}>
                   <h4 className="uppercase font-semibold text-2xl">
                     {skill.name}
                   </h4>
                   {/* skills */}
-                  <div className="ml-auto flex items-center justify-center">
+                  <div
+                    className={cn("ml-auto flex items-center justify-center")}>
                     <div className=" md:w-80 gap-2 flex flex-wrap justify-evenly ">
                       {skill.skillNames.map((skillName, skillNameIdx) => {
                         return (

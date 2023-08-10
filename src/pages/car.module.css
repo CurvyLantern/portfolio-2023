@@ -1,0 +1,6 @@
+.car__motion {
+    --off-dist: 0%;
+    height: 2000px;
+    offset-path: path("M 0 0 L 0 2000 Z");
+    offset-distance: var(--off-dist);
+}

@@ -1,12 +1,25 @@
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import styles from "@/styles/marquee.module.css";
 import Project1 from "@/assets/project1.png";
 import Project2 from "@/assets/project2.png";
 import Project3 from "@/assets/project3.png";
 import Project4 from "@/assets/project4.png";
-import { Link } from "react-router-dom";
 import Marquee from "@/components/sections/Marquee";
+import { Heading1, Heading2 } from "@/components/special/Typography";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { useWindowScroll } from "react-use";
+
+const skewCorrection = (deg, height) =>
+  Math.tan((deg * Math.PI) / 180) * height;
+
+const skewDifferece = (deg, width) => Math.tan((deg * Math.PI) / 180) * width;
+const mapper = (val, x, y) => {
+  const min = Math.min(x, y);
+  const max = Math.max(x, y);
+  return (val - min) / (max - min);
+};
 const ProfilePage = () => {
   const skills = [
     {
@@ -21,6 +34,7 @@ const ProfilePage = () => {
         "E-commerce",
         "Blog sites",
       ],
+      rotation: 3,
     },
     {
       name: "backend",
@@ -31,6 +45,12 @@ const ProfilePage = () => {
         "Node js",
         "Database operations",
       ],
+      rotation: -3,
+    },
+    {
+      name: "database",
+      skillNames: ["MongoDb", "Prisma ORM", "Firebase"],
+      rotation: 4,
     },
   ];
 
@@ -61,118 +81,76 @@ const ProfilePage = () => {
     },
   };
 
+  // const scrollEl = useRef(null);
+  // const carRef = useRef(null);
+  // const groundRef = useRef(null);
+  // const { x: scrollX, y: scrollY } = useWindowScroll();
+  // const [top, setTop] = useState(0);
+  // const [bottom, setBottom] = useState(0);
+  // useEffect(() => {
+  //   const dx = mapper(scrollY, 0, bottom);
+  //   const prcnt = Math.min(dx * 100, 110);
+  //   carRef.current.style.setProperty("--off-dist", `${prcnt}%`);
+  // });
+
+  // useEffect(() => {
+  //   const bounds = groundRef.current.getBoundingClientRect();
+  //   const diff = skewDifferece(6, bounds.width);
+  //   const minBottom = bounds.top + diff - 200;
+  //   setBottom(minBottom);
+  // }, []);
+
   return (
-    <div className="font-secondary">
+    <div className="font-secondary relative">
       {/* hero */}
-      <section className="mb-20">
+
+      <section className="mb-40">
         <div className="container">
-          <p className="float-left w-44 uppercase font-semibold font-primary text-sm pr-5">
+          <p className="float-left w-44 uppercase font-semibold font-primary text-sm pr-5 pb-5">
             Over 2 years of hard learned experience in javascript
           </p>
 
-          <h1 className="text-right text-8xl uppercase font-semibold">
+          <Heading1>
             I'm a developer who knows how to write Javascript{" "}
-          </h1>
+          </Heading1>
         </div>
       </section>
 
       {/* selected products */}
-      <section className="mb-20">
-        <div className="container">
-          <h2 className="text-6xl uppercase font-semibold py-5">My projects</h2>
+      <section className="mb-40">
+        <div className="">
+          <div className="container">
+            <Heading2>My projects</Heading2>
+          </div>
 
           {/* projects showcase */}
-          <div className="border-y-2 border-primary">
+          {/* "mx-2 py-3 border-y-2 border-primary flex flex-col md:flex-row gap-10 md:gap-3" */}
+          <div className="md:container mx-2 flex flex-col  gap-10 md:gap-0">
             {/* first col */}
-            <div className="flex border-b-2 border-primary">
+            <ProjectColumn className="border-t-2 border-primary">
               {/* first */}
-              <div className=" flex-1 p-3 pl-0">
-                <Link to={projects.first.href}>
-                  <div className="aspect-video rounded-lg overflow-hidden relative flex">
-                    <div className="w-full h-full  relative flex items-center justify-center">
-                      <img
-                        className="w-full h-full object-cover"
-                        src={projects.first.img}
-                        alt=""
-                      />
-                    </div>
-                    <div className="absolute w-full h-full top-0 left-0  flex flex-col justify-end">
-                      <p className="text-primary-foreground bg-foreground bg-opacity-50 p-5 uppercase text-2xl font-primary backdrop-blur-md">
-                        <span className="font-bold">{projects.first.name}</span>{" "}
-                        - {projects.first.desc}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
+              <div className=" flex-1  md:p-3 md:pl-0  ">
+                <ProjectCard project={projects.first} />
               </div>
               <div className="border-l-2 border-primary"></div>
               {/* second */}
-              <div className=" flex-1 p-3 pr-0">
-                <Link to={projects.second.href}>
-                  <div className="aspect-video rounded-lg overflow-hidden  relative">
-                    <div className="w-full h-full  relative flex items-center justify-center">
-                      <img
-                        className="w-full h-full  object-cover"
-                        src={projects.second.img}
-                        alt=""
-                      />
-                    </div>
-                    <div className="absolute w-full h-full top-0 left-0  flex flex-col justify-end">
-                      <p className="text-primary-foreground bg-foreground bg-opacity-50 p-5 uppercase text-2xl font-primary backdrop-blur-md">
-                        <span className="font-bold">
-                          {projects.second.name}
-                        </span>{" "}
-                        - {projects.second.desc}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
+              <div className=" flex-1 md:p-3 md:pr-0">
+                <ProjectCard project={projects.second} />
               </div>
-            </div>
+            </ProjectColumn>
 
             {/* second col */}
-            <div className="flex">
+            <ProjectColumn className="md:border-b-2 border-primary">
               {/* third */}
-              <div className="flex-1 p-3 pl-0">
-                <Link to={projects.third.href}>
-                  <div className="aspect-video rounded-lg overflow-hidden  relative">
-                    <div className="w-full h-full  relative flex items-center justify-center">
-                      <img
-                        className="w-full  h-full object-cover"
-                        src={projects.third.img}
-                        alt=""
-                      />
-                    </div>
-                    <div className="absolute w-full h-full top-0 left-0  flex flex-col justify-end">
-                      <p className="text-primary-foreground bg-foreground bg-opacity-50 p-5 uppercase text-2xl font-primary backdrop-blur-md">
-                        <span className="font-bold">{projects.third.name}</span>{" "}
-                        - {projects.third.desc}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
+              <div className="flex-1 md:p-3 md:pl-0">
+                <ProjectCard project={projects.third} />
               </div>
               <div className="border-l-2 border-primary"></div>
               {/* last */}
-              <div className="flex-1 p-3 pr-0">
-                <Link to={projects.four.href}>
-                  <div className="aspect-video rounded-lg overflow-hidden bg-red-600 relative">
-                    <div className="w-full h-full  relative flex items-center justify-center">
-                      <img
-                        className="w-full  h-full object-cover"
-                        src={projects.four.img}
-                        alt=""
-                      />
-                    </div>
-                    <div className="absolute w-full h-full top-0 left-0  flex flex-col justify-end">
-                      <p className="text-primary-foreground bg-foreground bg-opacity-50 p-5 uppercase text-2xl font-primary backdrop-blur-md">
-                        <span>{projects.four.name}</span> - {projects.four.desc}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
+              <div className="flex-1 md:p-3 md:pr-0">
+                <ProjectCard project={projects.four} />
               </div>
-            </div>
+            </ProjectColumn>
           </div>
           <div className="flex items-center justify-center py-6">
             <Button
@@ -185,23 +163,32 @@ const ProfilePage = () => {
       </section>
 
       {/* what I do */}
-      <section>
-        <h2 className="container text-6xl uppercase font-semibold py-5">
-          My skills
-        </h2>
-        <div className="bg-foreground py-10">
-          <div className="container grid auto-rows-fr py-10 ">
+      <section className="pt-40">
+        <div className="bg-foreground text-background pt-20 pb-40 origin-top-right -skew-y-[4deg] ">
+          <div className="container pb-11">
+            <Heading2>My skills</Heading2>
+          </div>
+        </div>
+        <div className="bg-foreground py-10 ">
+          <div className="container grid gap-10 auto-rows-fr py-10 ">
             {skills.map((skill, skillIdx) => {
               return (
                 <div
+                  style={{
+                    rotate: `${skill.rotation}deg`,
+                    transformOrigin: "center",
+                  }}
                   key={skillIdx}
-                  className="bg-primary-foreground border-2 border-primary shadow-md rounded-lg px-20 py-5 flex items-center">
+                  className={cn(
+                    "bg-primary-foreground border-2 border-primary shadow-md rounded-lg md:px-20 py-5 flex flex-col gap-10 md:flex-row items-center"
+                  )}>
                   <h4 className="uppercase font-semibold text-2xl">
                     {skill.name}
                   </h4>
                   {/* skills */}
-                  <div className="ml-auto flex items-center justify-center">
-                    <div className=" w-80 gap-2 flex flex-wrap ">
+                  <div
+                    className={cn("ml-auto flex items-center justify-center")}>
+                    <div className=" md:w-80 gap-2 flex flex-wrap justify-evenly ">
                       {skill.skillNames.map((skillName, skillNameIdx) => {
                         return (
                           <Badge
@@ -219,9 +206,9 @@ const ProfilePage = () => {
               );
             })}
           </div>
-          <div className="container flex items-center justify-center">
+          <div className="container py-20 flex items-center justify-center">
             <Button
-              aschild
+              asChild
               variant="wideInvert"
               size="xl">
               <Link to="/about-me">More about me</Link>
@@ -231,6 +218,40 @@ const ProfilePage = () => {
       </section>
 
       <Marquee text="Hire me" />
+    </div>
+  );
+};
+
+const ProjectCard = ({ className, project }) => {
+  return (
+    <Link to={project.href}>
+      <div className="bg-foreground aspect-square md:aspect-video rounded-lg overflow-hidden relative flex">
+        <div className="w-full h-full  relative flex items-center justify-center">
+          <img
+            className="w-full h-full object-top object-contain md:object-cover"
+            src={project.img}
+            alt=""
+          />
+        </div>
+        <div className="absolute w-full h-full top-0 left-0  flex flex-col justify-end">
+          <p className="text-primary-foreground bg-foreground bg-opacity-50 p-5 uppercase text-2xl font-primary backdrop-blur-md">
+            <span className="font-bold">{project.name}</span>{" "}
+            <span className="hidden md:inline-block">- {project.desc}</span>
+          </p>
+        </div>
+      </div>
+    </Link>
+  );
+};
+
+const ProjectColumn = ({ children, className }) => {
+  return (
+    <div
+      className={cn(
+        "flex md:flex-row flex-col gap-5 md:gap-0 md:border-b-2 border-primary",
+        className
+      )}>
+      {children}
     </div>
   );
 };

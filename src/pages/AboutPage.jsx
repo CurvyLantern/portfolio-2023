@@ -5,15 +5,14 @@ import CreativePng from "@/assets/creativity.png";
 import BeCreativePng from "@/assets/be-creative.png";
 import LearingPng from "@/assets/learning.png";
 import Marquee from "@/components/sections/Marquee";
+import { Heading1 } from "@/components/special/Typography";
 const AboutPage = () => {
   return (
     <div className="font-secondary">
       {/* hero */}
       <section className="mb-20">
         <div className="container">
-          <h1 className="text-center text-8xl uppercase font-semibold">
-            Hi there , I'm Naseem
-          </h1>
+          <Heading1 className="lg:text-center">Hi there , I'm Naseem</Heading1>
         </div>
       </section>
 
@@ -25,10 +24,10 @@ const AboutPage = () => {
           </h2>
 
           {/* content */}
-          <div className="border-t-2 border-primary grid grid-cols-2 gap-10 ">
+          <div className="border-t-2 border-primary grid grid-cols-1 lg:grid-cols-2 gap-10 ">
             {/* left side */}
             <div className="py-10 flex flex-col">
-              <p className="font-primary">
+              <p className="order-2 md:order-[0] font-primary">
                 Searching through the internet , researching about new ways to
                 get the job done and making performant codes more performant is
                 what gets me going 💪{" "}
@@ -128,10 +127,10 @@ const AboutPage = () => {
           </div>
         </div>
 
-        <p className="leading-normal font-primary text-4xl w-2/3 text-center mx-auto py-20">
+        <p className="leading-normal font-primary text-xl xsm:text-2xl md:text-4xl w-2/3 text-center mx-auto py-20">
           During my idle time, I like to research about various things. For
           example, "what a blackhole is". I watch anime, movies and play
-          videogames. I love to cook , when I am not working I cook whatever
+          videogames. I love to cook.Whenever I get a chance I cook whatever
           comes to mind :V
         </p>
 

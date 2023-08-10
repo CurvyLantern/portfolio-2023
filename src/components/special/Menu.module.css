@@ -1,0 +1,50 @@
+.parent {
+    --bar-time: 500ms;
+}
+.one {
+
+}
+
+.two {
+    animation: onHover var(--bar-time) ease-in-out forwards;
+}
+.two__reverse {
+    animation: onHover-reverse var(--bar-time) ease-in-out reverse forwards;
+}
+
+.three {
+
+}
+@keyframes onHover-reverse {
+    0% {
+        transform: scaleX(.5);
+        transform-origin: left;
+    }
+    50% {
+        transform: scaleX(1);
+    }
+    100% {
+        transform: scaleX(.5);
+        transform-origin: right;
+    }
+}
+@keyframes onHover {
+    0% {
+        transform: scaleX(.5);
+    }
+    50% {
+        transform: scaleX(1);
+    }
+    100% {
+        transform: scaleX(.5);
+        transform-origin: right;
+    }
+}
+
+.link__item {
+    --rotate-factor : 0deg;
+    transform: rotate(var(--rotate-factor)) translateX(-50%);
+    transform-origin: right;
+    
+    transition: transform 300ms linear;
+}

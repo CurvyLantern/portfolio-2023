@@ -1,0 +1,4 @@
+.car__motion {
+    --off-dist: 0%;
+    offset-path: path("M 800 0 C 800 250 825 175 0 600");
+}

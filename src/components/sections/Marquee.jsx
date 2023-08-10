@@ -4,10 +4,13 @@ const Marquee = ({ text }) => {
     <section className="my-40">
       {[0, 0, 0].map((_, rowIdx) => {
         return (
-          <div className={`${styles.marquee} bg-foreground py-5`}>
+          <div
+            key={rowIdx}
+            className={`${styles.marquee} bg-foreground py-5`}>
             {[0, 0].map((_, idx) => (
               <div
-                className={`bg-foreground text-background text-9xl uppercase font-primary ${
+                key={idx}
+                className={`bg-foreground text-background text-7xl xsm:text-8xl md:text-9xl uppercase font-primary ${
                   styles.marquee__content
                 } ${
                   rowIdx % 2 === 0

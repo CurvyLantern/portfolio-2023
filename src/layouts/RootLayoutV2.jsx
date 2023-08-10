@@ -6,21 +6,8 @@ import {
   TbBrandLinkedin,
 } from "react-icons/tb";
 import HireMe from "@/components/special/HireMe";
+import Menu from "@/components/special/Menu";
 const RootLayoutV2 = () => {
-  const menu_links = [
-    {
-      name: "Projects",
-      href: "projects",
-    },
-    {
-      name: "About",
-      href: "about-me",
-    },
-    {
-      name: "Contact",
-      href: "contact",
-    },
-  ];
   const social_links = [
     {
       name: "fb",
@@ -47,41 +34,35 @@ const RootLayoutV2 = () => {
         <div className="container flex items-center justify-between">
           {/* logo */}
           <Link to={"/"}>
-            <p className="font-cursive text-3xl font-bold">naseem</p>
+            <p className="font-cursive text-3xl font-bold mt-3">naseem</p>
           </Link>
           <div className="flex items-center">
             {/* available */}
-            <p className="w-36 mr-10">Open for any jobs and collaborations</p>
+            <p className="hidden md:block w-36 mr-10">
+              Open for any jobs and collaborations
+            </p>
 
-            <div className="flex items-center gap-5 border-4 border-primary px-2 rounded-full py-1">
+            <div className="flex items-center gap-5 md:border-4 border-primary px-2 rounded-full py-1">
               {/* menu */}
-              <ul className="flex">
-                {menu_links.map((menu, menuIdx) => (
-                  <li
-                    key={menuIdx}
-                    className="flex-1 rounded-full hover:shadow-md  hover:text-accent transition-colors">
-                    <Link
-                      to={menu.href ? menu.href : "#"}
-                      className="block px-8 py-3 ">
-                      {menu.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-
+              <Menu />
               {/* cta */}
-              <HireMe socialLinks={social_links} />
+              <div className="hidden sm:block">
+                <HireMe socialLinks={social_links} />
+              </div>
             </div>
           </div>
         </div>
       </header>
 
+      {/* page goes here */}
       <Outlet />
 
       {/* footer */}
       <footer className="bg-foreground text-background">
-        <div className="container flex justify-between items-center py-40">
-          <p className=" mr-10 font-primary">Open for any jobs and offers</p>
+        <div className="container flex flex-col gap-10 justify-between items-center py-32">
+          <p className="xsm:text-lg md:text-xl lg:text-2xl text-center font-primary">
+            Open for any jobs and offers
+          </p>
 
           {/* social icons */}
           <ul className="flex gap-5">
@@ -90,8 +71,7 @@ const RootLayoutV2 = () => {
                 <li key={socialIndex}>
                   <a
                     href={social.href ? social.href : "#"}
-                    className="transition-colors w-14 h-14 rounded-full border-2 border-background flex items-center justify-center hover:bg-background hover:text-foreground hover:border-foreground"
-                    aria-name={social.name}>
+                    className="transition-colors w-14 h-14 rounded-full border-2 border-background flex items-center justify-center hover:bg-background hover:text-foreground hover:border-foreground">
                     {social.icon ? (
                       <social.icon className="w-6 h-6" />
                     ) : social.name ? (

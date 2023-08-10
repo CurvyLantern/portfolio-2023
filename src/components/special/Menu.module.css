@@ -1,9 +1,7 @@
 .parent {
     --bar-time: 500ms;
 }
-.one {
 
-}
 
 .two {
     animation: onHover var(--bar-time) ease-in-out forwards;
@@ -12,9 +10,6 @@
     animation: onHover-reverse var(--bar-time) ease-in-out reverse forwards;
 }
 
-.three {
-
-}
 @keyframes onHover-reverse {
     0% {
         transform: scaleX(.5);
@@ -43,8 +38,11 @@
 
 .link__item {
     --rotate-factor : 0deg;
-    transform: rotate(var(--rotate-factor)) translateX(-50%);
+    transform: translateX(-135%) translateY(-50%) rotate(var(--rotate-factor));
     transform-origin: right;
+    top: 50%;
+    left:50%;
     
     transition: transform 300ms linear;
 }
+/* flex items-center */

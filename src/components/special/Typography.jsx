@@ -3,7 +3,7 @@ export const Heading1 = ({ children, className }) => {
   return (
     <h1
       className={cn(
-        "text-right text-4xl xsm:text-6xl lg:text-8xl uppercase font-semibold",
+        "text-right text-4xl xsm:text-6xl md:text-7xl lg:text-8xl uppercase font-semibold",
         className
       )}>
       {children}

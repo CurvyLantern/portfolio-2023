@@ -164,9 +164,9 @@ const ProfilePage = () => {
 
       {/* what I do */}
       <section className="pt-40">
-        <div className="bg-foreground text-background pt-20 pb-40 origin-top-right -skew-y-[4deg] ">
+        <div className="bg-foreground text-background pt-20 pb-30 origin-top-right -skew-y-[4deg] ">
           <div className="container pb-11">
-            <Heading2>My skills</Heading2>
+            <Heading2 className="text-center">My skills</Heading2>
           </div>
         </div>
         <div className="bg-foreground py-10 ">

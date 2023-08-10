@@ -8,6 +8,8 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "../ui/button";
 const HireMe = ({ socialLinks }) => {
+  const email = "ashfaqnaseem1@gmail.com";
+
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -30,15 +32,24 @@ const HireMe = ({ socialLinks }) => {
           </DialogDescription>
         </DialogHeader>
 
-        <div>
-            <a href=""></a>
+        <div className="flex justify-around items-center">
+          <Button
+            variant="link"
+            asChild
+            className="text-lg">
+            <a
+              href={`mailto:${email}`}
+              className="p-5 block">
+              {email}
+            </a>
+          </Button>
           <ul className="gap-5 flex">
             {socialLinks.map((social, socialIdx) => {
               return (
                 <li key={socialIdx}>
                   <a
                     href={social.href ? social.href : "#"}
-                    className="transition-colors w-14 h-14 rounded-full bg-foreground text-background flex items-center justify-center hover:bg-background hover:text-foreground hover:border-foreground"
+                    className="transition-all border-2 border-primary w-14 h-14 rounded-full bg-foreground text-background flex items-center justify-center hover:bg-background hover:text-foreground hover:border-foreground"
                     aria-name={social.name}>
                     {social.icon ? (
                       <social.icon className="w-6 h-6" />

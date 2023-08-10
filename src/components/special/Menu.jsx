@@ -58,7 +58,7 @@ const Menu = () => {
               setAnimationState(false);
             }}
             className="left-full w-64 h-64 md:h-80 md:w-80 rounded-full xl:rounded-full flex bg-red-500">
-            <ul className="w-full h-full absolute top-0 left-0 flex items-center">
+            <ul className="w-full h-full absolute top-0 left-0 ">
               {menu_links.map((link, idx) => {
                 const degs = [30, 0, -30];
                 return (
@@ -68,19 +68,23 @@ const Menu = () => {
                     }}
                     key={idx}
                     className={cn(
-                      " w-44 bg-white absolute border-2 border-primary flex items-center justify-center rounded-full overflow-hidden",
+                      "transition-all w-44 bg-white absolute border-2 border-primary flex items-center justify-center rounded-full overflow-hidden group hover:w-48",
                       styles.link__item
                     )}>
                     <Link
                       to={link.href}
-                      className="w-full p-3 pl-5">
+                      className="hover:bg-accent hover:text-background w-full p-3 pl-5">
                       {link.name}
                     </Link>
                   </li>
                 );
               })}
 
-              <li className="absolute w-full h-full top-0 left-0 bg-background rounded-full">
+              <li
+                style={{
+                  clipPath: `circle(50% at 50% 50%)`,
+                }}
+                className="absolute w-full h-full top-0 left-0 bg-background rounded-full  circle">
                 <img
                   src={MenuLightImg}
                   className="object-cover w-full h-full"

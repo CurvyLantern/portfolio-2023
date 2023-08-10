@@ -38,7 +38,7 @@ const RootLayoutV2 = () => {
           </Link>
           <div className="flex items-center">
             {/* available */}
-            <p className="hidden md:block w-36 mr-10">
+            <p className="hidden lg:block w-36 mr-10">
               Open for any jobs and collaborations
             </p>
 

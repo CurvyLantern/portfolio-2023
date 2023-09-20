@@ -64,6 +64,7 @@ const ContactPage = () => {
                         : "border-b-2 border-primary"
                     }`}>
                     <a
+                      target="_blank"
                       href={social.href ? social.href : "#"}
                       className="flex items-center justify-between py-5">
                       <p className="uppercase text-xl ">{social.fullName}</p>{" "}

@@ -12,12 +12,14 @@ const ContactPage = () => {
       href: "mailto:ashfaqnaseem1@gmail.com",
     },
     {
+      target: "_blank",
       name: "ln",
       fullName: "LinkedIn",
       icon: TbBrandLinkedin,
       href: "https://www.linkedin.com/in/ashfaq-naseem-959856260",
     },
     {
+      target: "_blank",
       name: "git",
       fullName: "Github",
       icon: TbBrandGithub,
@@ -64,7 +66,7 @@ const ContactPage = () => {
                         : "border-b-2 border-primary"
                     }`}>
                     <a
-                      target="_blank"
+                      target={social.target}
                       href={social.href ? social.href : "#"}
                       className="flex items-center justify-between py-5">
                       <p className="uppercase text-xl ">{social.fullName}</p>{" "}

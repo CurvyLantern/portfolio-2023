@@ -1,8 +1,4 @@
-import {
-  TbBrandFacebook,
-  TbBrandLinkedin,
-  TbBrandGithub,
-} from "react-icons/tb";
+import { TbBrandLinkedin, TbBrandGithub, TbBrandGmail } from "react-icons/tb";
 import MakeHappenImg from "@/assets/makeHappen.png";
 import Marquee from "@/components/sections/Marquee";
 import { Heading1 } from "@/components/special/Typography";
@@ -10,22 +6,22 @@ const ContactPage = () => {
   const email = "ashfaqnaseem1@gmail.com";
   const social_links = [
     {
-      name: "fb",
-      fullName: "Facebook",
-      icon: TbBrandFacebook,
-      href: "",
+      name: "gm",
+      fullName: "Gmail",
+      icon: TbBrandGmail,
+      href: "mailto:ashfaqnaseem1@gmail.com",
     },
     {
       name: "ln",
       fullName: "LinkedIn",
       icon: TbBrandLinkedin,
-      href: "",
+      href: "https://www.linkedin.com/in/ashfaq-naseem-959856260",
     },
     {
       name: "git",
       fullName: "Github",
       icon: TbBrandGithub,
-      href: "",
+      href: "https://github.com/CurvyLantern",
     },
   ];
   return (
